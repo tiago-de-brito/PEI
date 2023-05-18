@@ -1,5 +1,6 @@
 import React from 'react';
-import style from './App.css'
+import './App.css'
+import Slc from './slc/slc';
 
 function App() {
   const cronograma = [
@@ -44,12 +45,15 @@ function App() {
 
   return (
     <div className="App">
-      <div class="card">
+      <div className="card">
   <div className="card-body">
+
       <h1 className='h1'> Cronograma</h1>
-      <table class="table">
-        <thead class="table-dark"> 
-          <tr>
+      
+      <Slc/> 
+      <table className="table">
+        <thead className="table-dark"> 
+          <tr className='top'>
             <th>Horário</th>
             <th>Sala</th>
             <th>Disciplina</th>
@@ -60,7 +64,7 @@ function App() {
         </thead>
         <tbody>
           {cronograma.map(item => (
-            <tr key={item.id}>
+            <tr key={item.id} className='cont'>
               <td>{item.horario}</td>
               <td>{item.sala}</td>
               <td>{item.disciplina}</td>
@@ -72,6 +76,7 @@ function App() {
         </tbody>
       </table>
       </div>
+      
 </div>
     </div>
   );
