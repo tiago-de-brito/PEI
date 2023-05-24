@@ -1,8 +1,20 @@
-import React from 'react';
-import './App.css'
-import Slc from './slc/slc';
+import React, { useState } from 'react';
+import './App.css';
+
 
 function App() {
+  const [disciplinaFiltrada, setDisciplinaFiltrada] = useState(null);
+  const [opcaoBusca, setOpcaoBusca] = useState('');
+
+  const filtrarCronograma = (disciplina) => {
+    setDisciplinaFiltrada(disciplina);
+  };
+
+  const handleOpcaoBuscaChange = (e) => {
+    setOpcaoBusca(e.target.value);
+    setDisciplinaFiltrada(null);
+  };
+
   const cronograma = [
     {
       id: 1,
@@ -11,7 +23,7 @@ function App() {
       disciplina: 'Projeto de Extensão Interdisciplinar',
       professor: 'Waleska',
       dataProva: 'N/A',
-      dataTrabalho: 'Ajustar'
+      dataTrabalho: 'Ajustar',
     },
     {
       id: 2,
@@ -20,7 +32,7 @@ function App() {
       disciplina: 'Introdução a Sistemas de Informação',
       professor: 'Marcelo',
       dataProva: 'Ajustar',
-      dataTrabalho: 'Ajustar'
+      dataTrabalho: 'Ajustar',
     },
     {
       id: 3,
@@ -29,7 +41,7 @@ function App() {
       disciplina: 'Contabilidade Introdutória',
       professor: 'Ferron',
       dataProva: 'Ajustar',
-      dataTrabalho: 'Ajustar'
+      dataTrabalho: 'Ajustar',
     },
     {
       id: 4,
@@ -38,47 +50,70 @@ function App() {
       disciplina: 'Noções de Direito',
       professor: 'Thiara',
       dataProva: 'Ajustar',
-      dataTrabalho: 'Ajustar'
+      dataTrabalho: 'Ajustar',
     },
     // Adicione mais objetos cronograma conforme necessário
   ];
 
-  return (
-    <div className="App">
-      <div className="card">
-  <div className="card-body">
+  const opcoesBusca = cronograma.map((item) => item.disciplina);
 
-      <h1 className='h1'> Cronograma</h1>
-      
-      <Slc/> 
-      <table className="table">
-        <thead className="table-dark"> 
-          <tr className='top'>
-            <th>Horário</th>
-            <th>Sala</th>
-            <th>Disciplina</th>
-            <th>Professor</th>
-            <th>Data da Prova</th>
-            <th>Data do Trabalho</th>
-          </tr>
-        </thead>
-        <tbody>
-          {cronograma.map(item => (
-            <tr key={item.id} className='cont'>
-              <td>{item.horario}</td>
-              <td>{item.sala}</td>
-              <td>{item.disciplina}</td>
-              <td>{item.professor}</td>
-              <td>{item.dataProva}</td>
-              <td>{item.dataTrabalho}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      </div>
-      
-</div>
-    </div>
+
+  return (   
+        <div className="card-body">
+          <h1 className="h1">Cronograma</h1>
+          <div className="busca">
+            <select value={opcaoBusca}
+             className='select' onChange={handleOpcaoBuscaChange}>
+              <option value="">Selecione uma opção</option>
+              {opcoesBusca.map((opcao) => (
+                <option key={opcao} value={opcao}>
+                  {opcao}
+                </option>
+              ))}
+            </select>
+
+            <button
+              type="button" className='button'
+              disabled={!opcaoBusca}
+              onClick={() => {
+                filtrarCronograma(opcaoBusca);
+              }}
+            >
+              Buscar
+            </button>
+          </div>
+
+          {disciplinaFiltrada && (
+            <>
+              <table className="table">
+                <thead class="table-dark">
+                  <tr>
+                    <th>Horário</th>
+                    <th>Sala</th>
+                    <th>Disciplina</th>
+                    <th>Professor</th>
+                    <th>Data da Prova</th>
+                    <th>Data do Trabalho</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {cronograma
+                    .filter((item) => item.disciplina === disciplinaFiltrada)
+                    .map((item) => (
+                      <tr key={item.id}>
+                        <td>{item.horario}</td>
+                        <td>{item.sala}</td>
+                        <td>{item.disciplina}</td>
+                        <td>{item.professor}</td>
+                        <td>{item.dataProva}</td>
+                        <td>{item.dataTrabalho}</td>
+                      </tr>
+                    ))}
+                </tbody>
+              </table>
+            </>
+          )}
+        </div>      
   );
 }
 
