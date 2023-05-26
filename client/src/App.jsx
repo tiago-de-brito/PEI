@@ -6,14 +6,37 @@ function App() {
   const [disciplinaFiltrada, setDisciplinaFiltrada] = useState(null);
   const [opcaoBusca, setOpcaoBusca] = useState('');
 
+  const [cursoFiltrado, setCursoFiltrado] = useState(null);
+  const [opcaoCurso, setOpcaoCurso] = useState('');
+
   const filtrarCronograma = (disciplina) => {
     setDisciplinaFiltrada(disciplina);
+  };
+
+  const filtrarCurso = (nome) => {
+    setCursoFiltrado(nome);
   };
 
   const handleOpcaoBuscaChange = (e) => {
     setOpcaoBusca(e.target.value);
     setDisciplinaFiltrada(null);
   };
+
+  const handleOpcaoCursoChange = (e) => {
+    setOpcaoCurso(e.target.value);
+    setCursoFiltrado(null);
+  };
+
+  const curso = [
+    {
+      id:1,
+      nome:'Sistemas de Informação'
+    },
+    {
+      id:2,
+      nome:'Engenharia Elétrica'
+    }
+  ]
 
   const cronograma = [
     {
@@ -56,15 +79,25 @@ function App() {
   ];
 
   const opcoesBusca = cronograma.map((item) => item.disciplina);
+  const opcoesCurso = curso.map((item) => item.nome);
 
 
   return (   
         <div className="card-body">
           <h1 className="h1">Cronograma</h1>
           <div className="busca">
+          <select value={opcaoCurso}
+             className='select-curso' onChange={handleOpcaoCursoChange}>
+              <option value="">Selecione um curso</option>
+              {opcoesCurso.map((curso) => (
+                <option key={curso} value={curso}>
+                  {curso}
+                </option>
+              ))}
+            </select>
             <select value={opcaoBusca}
              className='select' onChange={handleOpcaoBuscaChange}>
-              <option value="">Selecione uma opção</option>
+              <option value="">Selecione uma disciplina</option>
               {opcoesBusca.map((opcao) => (
                 <option key={opcao} value={opcao}>
                   {opcao}
