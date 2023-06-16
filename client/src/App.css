@@ -1,40 +1,101 @@
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-  }
-  
-  th,
-  td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-  }  
-  
-  
-  .h1 {
-    justify-content: center;
-    display: flex;
-  }
-  .button {
-    transition-duration: 0.3s;
-    border-radius: 10px;
-    margin-left: 15px;
+  body {
+    background-image: url(img/logo.png);
+    background-position-y: bottom;
+    background-size: auto;
+    padding: 200px;
+    
     
   }
-    .button:hover{
-      background-color: gray;
-      color: white;
+  
+  *{
+  padding: 0;
+  margin: 0;
+  display: flexbox;
   }
-  .select {
-    border-radius: 10px;
+
+  .thead {
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  
+  
   }
-  .busca{
+
+  .th {
+  background-color: #2e2a2a;
+  align-items: center;
+  justify-content: center; 
+  flex-direction: column;
+  padding-left: 15px;
+  }
+
+  .td {
+  align-items: center;
+  padding-right: 120px;
+  padding-left: 19px;
+  flex-direction: column;
+  }
+  
+
+  .th {
+    border: 1px solid ;
+    color: white;
+
+    
+  }
+
+  h1 {
+   justify-content: center;
+   align-items: center;
+   display: flex;       
+  }
+
+  .table{
+    padding: 15px;
+  }
+
+
+  .btbusca{
+    margin-top: 20px;
+    border-radius: 15px;
+    margin-left: 10px;
+    padding: 0px 8px;
+    transition: 0.3s;
+
+  }
+
+  button:hover{
+    background-color: gray;
+    color: white;
+  }
+
+  select {
+  border-radius: 10px;
+  display: flex;
+  }
+  .container{
+    align-items: center;
     display: flex;
-    justify-content: center;
-    margin-top: 80px;
-  }
-  .select-curso{
+    flex-direction: column;  
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    }
+ 
+  .cont-curso{
     margin-right: 10px;
-    border-radius: 10px;
   }
+          
+  .cont-main{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    border: 10px solid #2e2a2a;
+    border-radius: 5px;
+    box-shadow: #2e2a2a 2px;
+    margin-top: 30px;
+    background-color: rgb(52, 108, 199);
+  }
+ label {
+  padding: auto;
+ }
